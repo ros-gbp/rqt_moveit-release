@@ -1,0 +1,13 @@
+Source: ros-lunar-rqt-moveit
+Section: misc
+Priority: extra
+Maintainer: Isaac I.Y. Saito <iisaito@kinugarage.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lunar-catkin
+Homepage: http://wiki.ros.org/rqt_moveit
+Standards-Version: 3.9.2
+
+Package: ros-lunar-rqt-moveit
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lunar-python-qt-binding (>= 0.2.19), ros-lunar-rosnode, ros-lunar-rospy, ros-lunar-rostopic, ros-lunar-rqt-gui, ros-lunar-rqt-gui-py, ros-lunar-rqt-py-common, ros-lunar-rqt-topic, ros-lunar-sensor-msgs
+Description: An rqt-based tool that assists monitoring tasks for MoveIt! motion planner developers and users.
+ Currently the following items are monitored if they are either running, existing or published: Node: /move_group Parameter: [/robot_description, /robot_description_semantic] Topic: Following types are monitored. Published &quot;names&quot; are ignored. [sensor_msgs/PointCloud, sensor_msgs/PointCloud2, sensor_msgs/Image, sensor_msgs/CameraInfo] Since this package is not made by the MoveIt! development team (although with assistance from the them), please post issue reports to the designated tracker (not MoveIt!'s main tracker).
