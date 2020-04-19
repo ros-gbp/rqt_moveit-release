@@ -1,3 +1,26 @@
+## rqt_moveit (noetic) - 0.5.8-1
+
+The packages in the `rqt_moveit` repository were released into the `noetic` distro by running `/usr/bin/bloom-release rqt_moveit --rosdistro noetic` on `Sun, 19 Apr 2020 08:57:58 -0000`
+
+The `rqt_moveit` package was released.
+
+Version of package(s) in repository `rqt_moveit`:
+
+- upstream repository: https://github.com/ros-visualization/rqt_moveit.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.5.8-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.3`
+- catkin_pkg version: `0.4.17`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.1`
+- vcstools version: `0.1.42`
+
+
 ## rqt_moveit (melodic) - 0.5.7-0
 
 The packages in the `rqt_moveit` repository were released into the `melodic` distro by running `/usr/bin/bloom-release rqt_moveit --track melodic --rosdistro melodic` on `Thu, 12 Apr 2018 03:14:19 -0000`
