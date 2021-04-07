@@ -35,7 +35,6 @@
 import os
 import sys
 import threading
-import xmlrpclib
 
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import QModelIndex, QTimer, Signal
@@ -45,6 +44,12 @@ import rospkg
 import rospy
 from rqt_py_common.rqt_roscomm_util import RqtRoscommUtil
 from rqt_topic.topic_widget import TopicWidget
+try:
+    # Python 2
+    from xmlrpclib import ServerProxy as XMLServerProxy
+except ModuleNotFoundError:
+    # Python 3
+    from xmlrpc.client import ServerProxy as XMLServerProxy
 
 
 class MoveitWidget(QWidget):
@@ -64,7 +69,7 @@ class MoveitWidget(QWidget):
         @type parent: MoveitMain
         """
 
-        self._ros_master = xmlrpclib.ServerProxy(os.environ['ROS_MASTER_URI'])
+        self._ros_master = XMLServerProxy(os.environ['ROS_MASTER_URI'])
         self._stop_event = threading.Event()
 
         self._nodes_monitored = ['/move_group']
@@ -150,7 +155,6 @@ class MoveitWidget(QWidget):
                 except rosnode_dynamically_loaded.ROSNodeIOException as e:
                     # TODO: Needs to be indicated on GUI
                     # (eg. PluginContainerWidget)
-                    rospy.logerr(e.message)
                     is_node_running = False
 
                 signal.emit(is_node_running, nodename)
@@ -179,10 +183,13 @@ class MoveitWidget(QWidget):
         @type stop_event: Event()
         """
         while True:
-            code, msg, val = self._ros_master.getPublishedTopics('/rqt_moveit_update_script', "")
-            if code == 1:
-                published_topics = dict(val)
-            else:
+            try:
+                code, msg, val = self._ros_master.getPublishedTopics('/rqt_moveit_update_script', "")
+                if code == 1:
+                    published_topics = dict(val)
+                else:
+                    rospy.logerr("Communication with rosmaster failed")
+            except:
                 rospy.logerr("Communication with rosmaster failed")
 
             registered_topics = []
